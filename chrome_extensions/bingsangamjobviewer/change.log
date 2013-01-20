@@ -1,0 +1,94 @@
+Author           Date     Rev.    Changes
+================ ======== ======= ================================================================
+Alan Stroop      20091111 1.2     Display xpath in tool tip and text box. Allow file:// protocol.
+                                  Display namespace declarations in element. Updated inline xslt
+                                  to be a truly well-formed/valid stylesheet.
+Alan Stroop      20091206 1.3     Single click displays xpath, double collapses/expands. Fixed
+                                  display issue with xpath box on smaller browser windows. Bold
+                                  text() nodes. Don't display namespace declaration if parent
+                                  node's namespace uri is the same.
+Alan Stroop      20091210 1.3.1   Tweaks to stylesheet to reduce html tags. Removed some of the
+                                  crusties in stylesheet. Don't create class="inline" ele divs
+                                  as it causes display issues and doesn't seem to help in any way.
+Alan Stroop      20100104 1.3.2   Exclamation point was missing on opening comment tag.
+Alan Stroop      20100110 1.3.3   Added charset=utf-8 to iframe src attribute
+Alan Stroop      20100120 1.4.0   Load stylesheet from extension directory. Load jquery.js from
+                                  extension directory in rendered output. Attempt parsing of XML
+                                  disquised as plain-text. Fixed "illegal return" error.
+Alan Stroop      20100214 1.5.0   Added Options page, toggling of banner and trim rendered output.
+Alan Stroop      20100215 1.5.1   Added Namespaces in root element option.
+Alan Stroop      20100221 1.5.2   Use libxslt's node-set() function, if available, for getting unique
+                                  namespaces. Added Debug Mode option.
+Alan Stroop      20100317 1.5.3   Added Display XPath Tooltip option. Tweak Help section.
+Alan Stroop      20100410 1.6.0   Added Transformation and Render (half-baked) functionality in
+                                  new Page Action. Added Line Wrap option.
+Alan Stroop      20100610 1.7.0   Changed rendering to replace documentElement instead of using
+                                  iframe, see http://code.google.com/p/chromium/issues/detail?id=43847
+                                  which should also allow for rendering of larger xml documents.
+                                  Fixed display issue with multi-line comments only displaying on 
+                                  a single line. Root elements with multiple namespaces (xsl, xsd,
+                                  wsdl, etc.) defined on it will now render those namespaces and 
+                                  not just the root element's namespace. Fixed bug where js error
+                                  would be reported due to class name collision on node-start and
+                                  namespace when clicking namespace for xpath/collapse. Added Show
+                                  Parsing Error option. Upped JQuery to 1.4.2. Code cleanup.
+Alan Stroop      20100720 1.7.1   Fixed bug where parsererror node would display when Show Parsing
+                                  Error option was set to no.
+Alan Stroop      20100728 1.7.2   Needed to modify jquery javascript to add null check on div.style 
+                                  when setting div.style.display = "none". Fixes js errors when
+                                  rendering tree. Only set unique namespaces variable when Display
+                                  Namespaces in Root Element option is set.
+Alan Stroop      20100729 1.7.3   Bug fix where duplicate namespace declarations would render on root
+                                  element. Fix display issue on attribute namespaces using the wrong
+                                  class name.
+Alan Stroop      20100809 1.7.4   Adjusted rendered output to allow attributes in xpath expression when 
+                                  clicked. Use javascript for determining xpath on node click. Adjusted
+                                  so attributes are listed before namespaces.                                                                                                                                        
+Alan Stroop      20100814 1.7.5   Fixed issue where some attribute namespaces wouldn't display. Fixed
+                                  display issue when Define Namespaces in Root Element is set.
+Alan Stroop      20100821 1.7.6   Fixed issue where js error of "$ is not defined" on initial rendering
+                                  of xml and reloading the page would fix it. Instead of loading jquery
+                                  at render time, it is now fully contained within the rendered output.
+Alan Stroop      20100825 1.7.7   Better namespace handling. Added Display XML Declaration and Indent
+                                  Size options.
+Alan Stroop      20100828 1.8.0   Added Render Method option and functionality due to long transformation
+                                  times using libxslt with large xml. Removed Display Namespaces in 
+                                  Root Element option. Code cleanup.
+Alan Stroop      20100829 1.8.1   Bug fixes for xpath expressions and element collapsing.        
+Alan Stroop      20100829 1.8.2   Added XPath Result functionality.
+Alan Stroop      20100906 1.8.3   Added Render functionality. Bug fix when rendering "non-xml" XML.        
+Alan Stroop      20100906 1.8.4   Added custom Namespace resolver for better XPath Results.
+Alan Stroop      20101021 1.9.0   Removed jquery dependency. Removed Render via XSLT and Display Tooltip
+                                  Options. Code cleanup.                  
+Alan Stroop      20101110 1.9.0.1 Changed <script .../> to <script ...></script> due to Chrome issue
+                                  http://code.google.com/p/chromium/issues/detail?id=61512              
+Alan Stroop      20101203 1.9.0.2 Fix null js errors when banner is not displayed
+Alan Stroop      20101207 1.9.0.3 Better text() node whitespace handling.
+Alan Stroop      20110215 1.9.0.4 Adjusted fuzzy logic for rendering XML disguised as plain text.
+Alan Stroop      20110218 1.9.0.5 Changed logic when checking nodeName to use toUpperCase() due to bug
+                                  in V8 engine sometimes using lowercase and other times uppercase for
+                                  the nodeName results, e.g. span vs SPAN.
+Alan Stroop      20110223 1.9.0.6 Added DocType rendering. Bug fix in text() node processing.
+Alan Stroop      20110225 1.9.1   Facelift
+Alan Stroop      20110312 1.9.1.1 Changes to override native Chrome 11 rendering of non-namespaced xml. 
+                                  XML with namespaces currently are rendered via Chrome.
+Alan Stroop      20110315 1.9.1.2 Bug fix due Chrome 11 rendering issue changes. 
+Alan Stroop      20110401 1.9.1.3 Added ftp:// protocol and frames support. Experimental logic to override
+                                  future versions of webkit's native XML rendering.
+Alan Stroop      20110413 1.9.1.4 Display & and < as escaped characters for text nodes and attribute values.
+Alan Stroop      20110428 1.9.1.5 Fix to not render well-formed HTML when it's wrapped by WebKit (Content-Type: text/plain)
+Alan Stroop      20110810 1.9.1.6 Added Render URLs As Hyperlinks, wonderbox width and advanced styling options. Get xpath
+                                  to comment() and processing-instruction() when clicked.
+                 20110820 1.9.1.7 Moved Transform functionality to main display    
+                 20110830 1.9.1.8 Report non-functionality of xsl:import/xsl:include/document() in XSL widget when
+                                  encountered. Added resize functionality to XSL widget. Better handling of XML/XSL 
+                                  strings vs. URLs. Changed Transform button to SVG to avoid the button's text being 
+                                  included when copying rendered xml.  
+                 20120307 1.9.1.9 Fix "Uncaught TypeError: Cannot read property 'tagName' of null" when checking for wrapped xml.
+                                  Fixed rendering issue due to Chrome splitting large CDATA sections into multiple nodes. Removed
+                                  page_action permission as its usefulness was removed in 1.9.1.7 version. 
+                 20120707 ...1.10 Updates for manifest v2      
+                 20120901 1.9.2   Fixed ... bug on self-closing elements. Fixed js exceptions due to 1.9.1.10 updates.
+                                  Added webintents functionality to allow application/atom+xml and application/rss+xml
+                                  to be viewed.
+                 20121014 1.9.2.1 Updates due to webintents changes.                                               

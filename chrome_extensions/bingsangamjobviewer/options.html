@@ -1,0 +1,222 @@
+<html>
+	<head>
+		<title>Bing Sangam Job viwer's XML Tree Options</title>
+		<style>
+		 html,body{font-family:monospace;padding:0px;margin:0px 0px 1em 0em;}
+		 fieldset{border-radius:5px;}
+		 legend{font-weight:bold;}
+		 label{font-size:0.7em}
+		 p{font-size:0.7em}
+		 .sample{top:0;left:0;}
+		 .section{padding-bottom:5px;}
+		 .xml{}
+		 .banner{}
+		 .misc{}
+		 #status{text-align:center;color:red;background-color:#000;font-style:italic;font-weight:bold;}
+		 #help{display:none;}
+		 #tree{color:black;background-color:white;font-size:13px;font-family:monospace;padding-left:1em;word-wrap:break-word;}      
+		 .ele{margin:2px 0px 5px;border-left:1px dotted #fff;}      
+		 .ele                     
+		 .ele{margin-left:20px;}      
+		 .content,div.inline      *,div.inline{display:inline}      div.inline      *,div.inline{margin:0;border-left:none}      
+		 .prefix,.name{color:purple}      
+		 .prefix,.name{font-weight:bold}
+		 .a-name{color:olive}      
+		 .a-value{color:blue}      
+		 .ns{color:gray}      
+		 .comment{color:green;font-style:italic}      
+		 .text{white-space:pre;color:black;font-weight:bold;}
+		 .cdata{white-space:pre;color:teal;font-weight:bold;}      
+		 .pi{color:gold}      
+		 .closed{background:lime}
+		 #banner{border-bottom:3px solid #000;border-right:3px solid #000; 
+                    	width:100%;height:55px;font-size:80%;font-weight:normal;
+                    	line-height:25px;text-align:left;padding-left:1em;
+	                   	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(dodgerblue), to(slategrey));}  
+		 #wonderbox{width:50%;float:left;color:black;background-color:white;border-radius: 5px;}
+		 #view{vertical-align:top;margin-left:1em;text-decoration:none;color:white;}
+	                   	    
+		</style>
+		
+		<script type="text/javascript" src="options.js"></script>
+
+	</head>
+
+	<body>
+		<div class="sample">
+			<div id="banner">
+				<textarea id="wonderbox" rows="3" cols="50">Sample</textarea>
+	    	    <div>
+	        		<a id="view" href="#" onclick="return false;">View Source</a>
+	        	</div>
+			</div>
+			<div id="tree">
+				<div class="pi">&lt;!DOCTYPE SAMPLE SYSTEM "sample.dtd"&gt;</div>
+				<div class="pi">&lt;?processing instruction ?&gt;</div>
+				<div class="comment">&lt;!--comment--&gt;</div>
+				<div class="ele">
+					<span class="tag tag-start">&lt;<span class="name">element</span> <span class="a-name">attribute</span><span class="a-value">="attribute_value"</span><span class="ns"> xmlns="namespace"</span>&gt;</span><div class="content"><span class="text">text</span></div><span class="tag tag-end">&lt;/<span class="name">element</span>&gt;</span>
+					<br/>
+					<span class="tag tag-start">&lt;<span class="name">element</span>&gt;</span><div class="content"><span class="cdata">&lt;![CDATA[Q &amp; A]]&gt;</span></div><span class="tag tag-end">&lt;/<span class="name">element</span>&gt;</span>
+				</div>
+			</div>
+		</div>
+		<div id="status"></div>
+		<button>Save</button>
+		<button>Toggle Help</button>
+		<div id="help" class="section">
+			<fieldset>
+				<legend>Help</legend>		
+				<p>To reset to default values, remove the value(s) and click the Save button.</p>
+				<p>Color values can be any color word or HEX code, i.e. red or #FFF or #0000FF, supported by your browser. See <a href="http://en.wikipedia.org/wiki/Web_colors" target="_blank">http://en.wikipedia.org/wiki/Web_colors</a> for more info.</p>
+				<p>Font Family values can be any font-family, i.e. monospace or serif, supported by your browser and operating system. See <a href="http://en.wikipedia.org/wiki/Font_family_(HTML)" target="_blank">http://en.wikipedia.org/wiki/Font_family_(HTML)</a> for more info.</p>
+				<p>Font Size values can be any font-size, i.e. 13px or 2em or 80%, supported by your browser. See <a href="http://www.w3.org/TR/CSS2/fonts.html#font-size-props" target="_blank">http://www.w3.org/TR/CSS2/fonts.html#font-size-props</a> for more info.</p>
+			</fieldset>
+		</div>
+		<div class="section xml">
+			<fieldset>
+				<legend>XML</legend>
+				<table>
+					<tr>
+						<td><label>Element Color:</label><input type="text" id="element_color"/></td>
+						<td><label>Namespace Color:</label><input type="text" id="namespace_color"/></td>
+						<td><label>Text Color:</label><input type="text" id="text_color"/></td>
+					</tr>
+					<tr>
+						<td><label>Attribute Color:</label><input type="text" id="attribute_color"/></td>
+						<td><label>Attribute Value Color:</label><input type="text" id="attribute_value_color"/></td>
+						<td><label>CDATA Color:</label><input type="text" id="cdata_color"/></td>
+					</tr>
+					<tr>
+						<td><label>Comment Color:</label><input type="text" id="comment_color"/></td>
+						<td><label>Processing Instruction/DocType Color:</label><input type="text" id="pi_color"/></td>
+						<td><label>Symbol (&lt;, &gt;, /) Color:</label><input type="text" id="symbol_color"/></td>
+					</tr>
+					<tr>
+						<td><label>Collapsed Color:</label><input type="text" id="collapsed_color"/></td>
+						<td><label>Hover Color:</label><input type="text" id="hover_color"/></td>
+						<td><label>Background Color:</label><input type="text" id="background_color"/></td>
+					</tr>
+					<tr>
+						<td><label>Font Family:</label><input type="text" id="font_family"/></td>
+						<td><label>Font Size:</label><input type="text" id="font_size"/></td>
+						<td/>
+					</tr>
+					<tr>
+						<td><label>Indent Size:</label><input type="text" id="indent_size"/></td>
+						<td><label>Line Wrap:</label>
+							<select id="line_wrap">
+								<option value="1em">yes</option>
+								<option value="-100%">no</option>
+							</select>
+						</td>
+						<td><label>Display XML Declaration:</label>
+							<select id="display_xml">
+								<option value="yes">yes</option>
+								<option value="no">no</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<button><!-- button onclick="toggle('advanced')"-->Advanced</button>					
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<div id="advanced">
+								<fieldset>
+									<legend>Advanced</legend>
+									<p>Enter CSS rules to override default styling. No preview available. Example:</p>
+									<pre>color:blue;font:italic 15px arial;text-shadow:red -1px -1px;</pre>
+									<p style="color:blue;font:italic 15px arial;text-shadow:red -1px -1px;">Disclaimer: not responsible for bad CSS-fu or taste.</p>
+									<table>
+										<tr>
+											<td><label>Element Style:</label><input type="text" id="element_style"/></td>
+											<td><label>Namespace Style:</label><input type="text" id="namespace_style"/></td>
+											<td><label>Text Style:</label><input type="text" id="text_style"/></td>
+										</tr>
+										<tr>
+											<td><label>Attribute Style:</label><input type="text" id="attribute_style"/></td>
+											<td><label>Attribute Value Style:</label><input type="text" id="attribute_value_style"/></td>
+											<td><label>CDATA Style:</label><input type="text" id="cdata_style"/></td>
+										</tr>
+										<tr>
+											<td><label>Comment Style:</label><input type="text" id="comment_style"/></td>
+											<td><label>Processing Instruction/DocType Style:</label><input type="text" id="pi_style"/></td>
+											<td><label>Symbol (&lt;, &gt;, /) Style:</label><input type="text" id="symbol_style"/></td>
+										</tr>
+									</table>
+								</fieldset>			
+							</div>					
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+		
+		<div class="section banner">
+			<fieldset>
+				<legend>Banner</legend>
+				<table>
+					<tr>
+						<td><label>Display Banner:</label>
+							<select id="display_banner">
+								<option value="yes">yes</option>
+								<option value="no" selected>no</option>
+							</select>
+						</td>
+						<td/>
+					</tr>
+					<tr>
+						<td><label>Banner Top Color:</label><input type="text" id="banner_top_color"/></td>
+						<td><label>Banner Bottom Color:</label><input type="text" id="banner_bottom_color"/></td>
+						<td><label>Banner Toggle Speed (seconds):</label><input type="number" step="1" min="0" max="5" id="toggle_speed"/></td>
+					</tr>
+					<tr>
+						<td><label>Wonderbox Width (%):</label>
+							<select id="wb_width">
+								<option value="30%">30</option>
+								<option value="40%">40</option>
+								<option value="50%">50</option>
+								<option value="60%">60</option>
+								<option value="70%">70</option>
+								<option value="80%">80</option>
+							</select>
+						</td>
+						<td><label>Wonderbox Text Color:</label><input type="text" id="wb_text_color"/></td>
+						<td><label>Wonderbox Background Color:</label><input type="text" id="wb_background_color"/></td>
+					</tr>
+					<tr>
+						<td><label>Action Link Color:</label><input type="text" id="action_link_color"/></td>
+						<td/>
+						<td/>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+		
+		<div class="section misc">
+			<fieldset>
+				<legend>Misc.</legend>
+				<table>
+					<tr>
+						<td><label>Debug Mode:</label>
+							<select id="debug_mode">
+								<option value="yes">yes</option>
+								<option value="no">no</option>
+							</select>
+						</td>
+						<td><label>Show Parsing Errors Alert (may have false postives):</label>
+							<select id="show_parsererror">
+								<option value="yes">yes</option>
+								<option value="no">no</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+		<button>Save</button>
+	</body>
+</html>
