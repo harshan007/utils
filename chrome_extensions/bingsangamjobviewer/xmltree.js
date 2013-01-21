@@ -209,9 +209,9 @@ var tree = {
                             // start (hanagara)
                             /* Add clickable hyper-links for JobInfo, FeedEntry, FeedRun */
                             //debugger;
-                            tree.addClickableHyperlinksForJobInfoUrls(att);
-                            tree.addClickableHyperlinksForFeedEntryUrls(att);
-                            tree.addClickableHyperlinksForFeedRunUrls(att);
+                            tree.addClickableHyperlinksForJobInfoUrls(node, att);
+                            tree.addClickableHyperlinksForFeedEntryUrls(node, att);
+                            tree.addClickableHyperlinksForFeedRunUrls(node, att);
                             // end (hanagara) 
                             e.appendChild(document.createTextNode(' '));
                             var an = tree.createNodeStructure(xhtmlNS, 'span', 'class', 'an', att.nodeName);
@@ -307,11 +307,11 @@ var tree = {
         }
     },
 
-    addClickableHyperlinksForJobInfoUrls: function (att) {
+    addClickableHyperlinksForJobInfoUrls: function (node, att) {
         var jobInfoInd = document.URL.indexOf('/JobInfo/');
         if (jobInfoInd != -1) { // for ../../JobInfo/.. urls
             var urlPrefix = document.URL.substring(0, jobInfoInd);
-            if (att.nodeName == 'SegmentID' && att.ownerElement.nodeName == 'SimpleJobSegment') {
+            if (att.nodeName == 'SegmentID' && att.ownerElement.nodeName == 'SimpleJobSegment' && att.nodeValue.indexOf('Blocking') == -1 && att.nodeValue.indexOf('NonBlocking') == -1) { // Blocking/NonBlocking jobs have JobInfo urls
                 var oldVal = att.nodeValue;
                 var newVal = urlPrefix + '/JobInfo/' + oldVal;
                 att.nodeValue = newVal;
@@ -329,7 +329,7 @@ var tree = {
             if (att.nodeName == 'ScopeID' && att.ownerElement.nodeName == 'SimpleJobSegment') {
                 var oldVal = att.nodeValue;
                 var virtualCluster = node.getAttribute('VirtualCluster');
-                if (virtualCluster != '') {
+                if (virtualCluster != null && virtualCluster != '') {
                     var newVal = virtualCluster + '/_Jobs/' + oldVal;
                     att.nodeValue = newVal;
                 }
@@ -337,7 +337,7 @@ var tree = {
         }
     },
 
-    addClickableHyperlinksForFeedEntryUrls: function (att) {
+    addClickableHyperlinksForFeedEntryUrls: function (node, att) {
         var feedEntryInd = document.URL.indexOf('/FeedEntry/');
         if (feedEntryInd != -1) { // for ../../FeedEntry/.. urls
             var urlPrefix = document.URL.substring(0, feedEntryInd);
@@ -349,14 +349,14 @@ var tree = {
         }
     },
 
-    addClickableHyperlinksForFeedRunUrls: function (att) {
+    addClickableHyperlinksForFeedRunUrls: function (node, att) {
         var feedRunInd = document.URL.indexOf('/FeedRun/');
         if (feedRunInd != -1) { // for ../../FeedRun/.. urls
             var urlPrefix = document.URL.substring(0, feedRunInd);
             if (att.nodeName == 'vcRelativePath' && att.ownerElement.nodeName == 'FeedRun') {
                 var oldVal = att.nodeValue;
                 var vcName = node.getAttribute('vcName');
-                if (vcName != '') {
+                if (vcName != null && vcName != '') {
                     var newVal = vcName + oldVal + '?property=info';
                     att.nodeValue = newVal;
                 }
